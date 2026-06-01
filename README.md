@@ -171,5 +171,5 @@ If GitHub's notebook renderer is unable to display `Notebook.ipynb`, the complet
 
 ## Author
 
-Tejaswini J.
-Data Science Intern Assignment – Primetrade.ai
+Tejaswini Singh
+
