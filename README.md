@@ -2,45 +2,65 @@
 
 ## Overview
 
-This project analyzes the relationship between Bitcoin market sentiment (Fear & Greed Index) and trader behavior/performance on Hyperliquid.
+This project investigates the relationship between Bitcoin market sentiment and trader performance on Hyperliquid.
 
-The objective is to identify how market sentiment influences:
+The objective is to determine whether different market sentiment conditions (Fear, Greed, Extreme Fear, Extreme Greed, and Neutral) influence:
 
-* Trader profitability (PnL)
-* Win rates
-* Trading activity
-* Position sizing behavior
-* Long/Short preferences
+- Trader profitability (PnL)
+- Win rates
+- Trading activity
+- Position sizing behavior
+- Long/Short preferences
 
-The analysis also segments traders into different groups and proposes actionable trading strategies based on the findings.
+The project combines Bitcoin Fear & Greed Index data with Hyperliquid historical trader data to uncover actionable trading insights.
 
 ---
 
-## Dataset
+## Datasets
 
 ### 1. Bitcoin Fear & Greed Index
 
 Contains daily market sentiment classifications:
 
-* Extreme Fear
-* Fear
-* Neutral
-* Greed
-* Extreme Greed
+- Extreme Fear
+- Fear
+- Neutral
+- Greed
+- Extreme Greed
 
 ### 2. Hyperliquid Historical Trader Data
 
 Contains trader-level transaction information including:
 
-* Account
-* Symbol
-* Side
-* Execution Price
-* Size
-* Closed PnL
-* Leverage
-* Timestamp
-* Position Information
+- Account
+- Symbol
+- Side
+- Execution Price
+- Size
+- Closed PnL
+- Leverage
+- Timestamp
+- Position Information
+
+---
+
+## Project Structure
+
+```text
+Trader-Sentiment-Analysis-pt.ai
+│
+├── Notebook.ipynb
+├── notebook.py
+├── README.md
+├── Report.md
+├── PnL_distribution.png
+├── k-mean_clusterplot.png
+├── long vs short bias.png
+├── market sentiment distribution.png
+├── trade count.png
+├── trade size by sentiment.png
+└── win_rate.png
+```
 
 ---
 
@@ -48,128 +68,158 @@ Contains trader-level transaction information including:
 
 ### Data Preparation
 
-* Loaded both datasets
-* Checked missing values and duplicates
-* Standardized timestamps
-* Extracted trading dates
-* Merged sentiment and trading datasets at the daily level
+- Loaded both datasets
+- Checked for missing values and duplicates
+- Converted timestamps to datetime format
+- Extracted daily dates
+- Merged sentiment and trading data using date
 
 ### Feature Engineering
 
 Created the following metrics:
 
-* Win/Loss Indicator
-* Daily PnL
-* Win Rate
-* Trade Count
-* Average Trade Size
-* Long/Short Bias
+- Win/Loss Indicator
+- Daily PnL
+- Win Rate
+- Trade Count
+- Average Trade Size
+- Long/Short Bias
 
-### Exploratory Analysis
+### Exploratory Data Analysis
 
-Analyzed:
+Performed analysis on:
 
-* Profitability across sentiment regimes
-* Win rate differences
-* Trading activity differences
-* Position sizing behavior
-* Directional trading preferences
+- Profitability by sentiment
+- Win rates by sentiment
+- Trade counts by sentiment
+- Position sizes by sentiment
+- Trading direction distribution
 
 ### Trader Segmentation
 
-Segmented traders into:
+Created trader segments:
 
-* Frequent vs Infrequent Traders
-* Consistent Winners vs Inconsistent Traders
-* K-Means Behavioral Clusters
+- Frequent vs Infrequent Traders
+- Consistent Winners vs Inconsistent Traders
+- K-Means Behavioral Clusters
 
 ### Statistical Testing
 
-Performed Welch's T-Test to evaluate whether profitability differs significantly between Fear and Greed market conditions.
+Performed Welch's T-Test to compare profitability between Fear and Greed market conditions.
 
 ---
 
 ## Key Findings
 
-### 1. Extreme Greed Produced the Highest Profitability
+### Extreme Greed Generated Highest Profitability
 
-Extreme Greed periods generated the highest average trader profitability and the highest win rate.
+Extreme Greed periods produced the highest average trader profitability and win rates.
 
-### 2. Traders Took Larger Risks During Fear
+### Fear Produced Highest Trading Activity
 
-Average trade sizes were highest during Fear periods despite lower profitability.
+Fear periods recorded the largest number of trades, indicating increased participation during uncertain market conditions.
 
-### 3. Fear Generated the Highest Trading Activity
+### Traders Took Larger Positions During Fear
 
-Traders were most active during Fear periods, suggesting increased participation during volatile markets.
+Average trade sizes were largest during Fear periods, suggesting increased risk-taking behavior.
 
-### 4. Trade Quality Outperformed Trade Quantity
+### Infrequent Traders Outperformed Frequent Traders
 
-Infrequent traders achieved higher average profitability than frequent traders.
+Infrequent traders achieved higher average profitability despite lower trading activity.
 
-### 5. Consistent Winners Used Smaller Position Sizes
+### Consistent Winners Used Smaller Positions
 
 Consistent winners maintained significantly smaller average position sizes while achieving much higher win rates.
 
-### 6. Sentiment Alone Was Not Statistically Significant
+### Sentiment Alone Was Not Statistically Significant
 
-Welch's T-Test produced a p-value greater than 0.05, indicating that profitability differences between Fear and Greed periods were not statistically significant.
-
----
-
-## Strategy Recommendations
-
-### Strategy 1
-
-Reduce leverage and position sizes during Fear periods to limit downside risk.
-
-### Strategy 2
-
-Prioritize high-conviction trades rather than increasing trade frequency.
-
-### Strategy 3
-
-Adopt disciplined position sizing practices similar to those used by consistent winning traders.
+Welch's T-Test resulted in a p-value greater than 0.05, suggesting that profitability differences between Fear and Greed periods were not statistically significant.
 
 ---
 
-## Repository Contents
+## Visualizations Included
 
-```text
-.
-├── Notebook.ipynb
-├── notebook.py
-├── README.md
-├── Report.md
-```
+- Market Sentiment Distribution
+- Profitability Distribution
+- Win Rate by Sentiment
+- Trade Count by Sentiment
+- Trade Size by Sentiment
+- Long vs Short Bias
+- K-Means Trader Clusters
 
 ---
 
-## Running the Analysis
+## Setup
 
-Install required packages:
+### Install Dependencies
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn scipy
+pip install pandas numpy matplotlib seaborn scipy scikit-learn
 ```
 
-Run the script:
+### Required Libraries
+
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- scipy
+- scikit-learn
+
+---
+
+## How to Run
+
+### Option 1: Jupyter Notebook
+
+Open:
+
+```text
+Notebook.ipynb
+```
+
+Run all cells sequentially.
+
+---
+
+### Option 2: Python Script
+
+Execute:
 
 ```bash
 python notebook.py
 ```
 
+The script performs:
+
+1. Data loading
+2. Data cleaning
+3. Feature engineering
+4. Exploratory data analysis
+5. Trader segmentation
+6. Statistical testing
+7. Chart generation
+
 ---
 
-## Note
+## Results
 
-A Python script version (`notebook.py`) is included for easy execution and reproducibility.
+The analysis indicates that trader behavior, risk management, and position sizing have a stronger relationship with profitability than sentiment alone.
 
-If GitHub's notebook renderer is unable to display `Notebook.ipynb`, the complete analysis can still be reviewed and executed using the Python script.
+The findings suggest that disciplined position sizing and selective trading outperform excessive trading activity.
+
+---
+
+## Report
+
+A detailed summary of the methodology, exploratory analysis, findings, and strategy recommendations is available in:
+
+```text
+Report.md
+```
 
 ---
 
 ## Author
 
 Tejaswini Singh
-
